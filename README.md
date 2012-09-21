@@ -8,6 +8,7 @@ Requirements
 - Depends on ark cookbook
 - Depends on Java cookbook
 - Tested on debian 6
+
 Attributes
 ==========
 - You can read the explanation of each one in attributes/default.rb
