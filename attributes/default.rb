@@ -14,12 +14,12 @@ default[:archiva][:user_owner] = "root"
 
 #Web settings (archiva)
 default[:archiva][:web_host]               = "127.0.0.1"
-default[:archiva][:web_port:]               = "8080"
-default[:archiva:][:web_domain.]             = node[:fqdn] #"archiva.example.com"
+default[:archiva][:web_port]               = "8080"
+default[:archiva][:web_domain]             = "archiva.example.com"
 default[:archiva][:web_template]           = "default"
 
 #nginx install from (source, package..)
-default[:archiva'][:nginx'] = "default"
+default[:archiva][:nginx] = "default"
 #this will configure the nginx proxy (defaul /)
 default[:archiva][:nginx_uri] = "/"
 #Port where nginx vhost should listen(80 defaul)
