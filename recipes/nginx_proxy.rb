@@ -11,7 +11,7 @@ include_recipe "nginx::#{node[:archiva][:nginx]}"
 
 template "archiva_server.conf" do
   path "#{node[:nginx][:dir]}/sites-available/archiva_server.conf"
-  source "nginx_site_#{node['archiva']['web_template']}.erb"
+  source "nginx_site_#{node[:archiva][:web_template]}.erb"
   owner "root"
   group "root"
   mode 0644
