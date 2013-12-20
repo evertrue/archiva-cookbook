@@ -4,11 +4,12 @@
 #
 # Author:: Jorge Espada <espada.jorge@gmail.com>
 
-default[:archiva][:url_version] = "http://apache.mivzakim.net/archiva/1.3.6/binaries/apache-archiva-1.3.6-bin.tar.gz"
 default[:archiva][:version] = "1.3.6"
+default[:archiva][:url_version] = "http://apache.mivzakim.net/archiva/#{node[:archiva][:version]}/binaries/apache-archiva-#{node[:archiva][:version]}-bin.tar.gz"
+default[:archiva][:checksum] = "bc696f38bacee90695802ec149f167125b24cc93c690560b5c5826a8e8bf86da"
+
 default[:archiva][:install_path] = "/opt/"
 default[:archiva][:home] = "/opt/archiva"
-default[:archiva][:checksum] = "bc696f38bacee90695802ec149f167125b24cc93c690560b5c5826a8e8bf86da"
 default[:archiva][:user_owner] = "root"
 
 
