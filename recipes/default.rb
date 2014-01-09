@@ -28,6 +28,13 @@ link "/etc/init.d/archiva" do
   to "/opt/archiva/bin/archiva"
 end
 
+arch = node['kernel']['machine']
+if platform?("ubuntu") && arch.include?("x86_64")
+	file "/opt/archiva/bin/wrapper-linux-x86-32" do
+		action :delete
+	end
+end
+
 service "archiva" do
   supports :status => true, :start => true, :stop => true, :restart => true
   action [:enable, :start]
