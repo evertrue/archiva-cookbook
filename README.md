@@ -1,6 +1,6 @@
 Description
 ===========
-- This cookbook install Apache Archiva 1.3.5 stand alone (http://archiva.apache.org)
+- This cookbook install Apache Archiva 1.3.9 stand alone (http://archiva.apache.org)
 - The instalation will use the defautl internal derby DB
 - Source : https://github.com/jespada/chef-archiva
 
