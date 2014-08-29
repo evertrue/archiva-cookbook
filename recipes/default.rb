@@ -16,14 +16,11 @@
 # limitations under the License.
 #
 
+include_recipe 'ark'
 
+# download, extract archiva in /opt and make the proper symblink
 
-
-include_recipe "ark"
-
-#download, extract archiva in /opt and make the proper symblink
-
-ark "archiva" do
+ark 'archiva' do
   url node[:archiva][:url_version]
   version node[:archiva][:version]
   prefix_root node[:archiva][:install_path]
@@ -33,21 +30,20 @@ ark "archiva" do
   action :install
 end
 
+# create scripts(/etc/init.d/archiva <option>) for stop start, using symblinks
 
-#create scripts(/etc/init.d/archiva <option>) for stop start, using symblinks
-
-link "/etc/init.d/archiva" do
-  to "/opt/archiva/bin/archiva"
+link '/etc/init.d/archiva' do
+  to '/opt/archiva/bin/archiva'
 end
 
 arch = node['kernel']['machine']
-if platform?("ubuntu") && arch.include?("x86_64")
-	file "/opt/archiva/bin/wrapper-linux-x86-32" do
-		action :delete
-	end
+if platform?('ubuntu') && arch.include?('x86_64')
+  file '/opt/archiva/bin/wrapper-linux-x86-32' do
+    action :delete
+  end
 end
 
-service "archiva" do
-  supports :status => true, :start => true, :stop => true, :restart => true
+service 'archiva' do
+  supports status: true, start: true, stop: true, restart: true
   action [:enable, :start]
 end
