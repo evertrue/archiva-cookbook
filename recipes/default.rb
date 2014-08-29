@@ -29,15 +29,13 @@ ark 'archiva' do
   action      :install
 end
 
-# create scripts(/etc/init.d/archiva <option>) for stop start, using symblinks
-
 link '/etc/init.d/archiva' do
-  to '/opt/archiva/bin/archiva'
+  to "#{node[:archiva][:home]}/bin/archiva"
 end
 
 arch = node['kernel']['machine']
 if platform?('ubuntu') && arch.include?('x86_64')
-  file '/opt/archiva/bin/wrapper-linux-x86-32' do
+  file "#{node[:archiva][:home]}/bin/wrapper-linux-x86-32" do
     action :delete
   end
 end
