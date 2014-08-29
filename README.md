@@ -1,6 +1,6 @@
 # archiva cookbook
 
-This cookbook installs [Apache Archiva](http://archiva.apache.org) 1.3.5 standalone.
+This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standalone.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 1.3.5 standal
       <td><code>[:archiva][:version]</code></td>
       <td>string</td>
       <td>the version of Archiva to install</td>
-      <td><code>1.3.9</code></td>
+      <td><code>2.1.0</code></td>
     </tr>
 
     <tr>

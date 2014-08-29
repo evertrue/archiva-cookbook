@@ -9,12 +9,12 @@ describe 'archiva::default' do
 
   it 'installs Archiva' do
     expect(chef_run).to install_ark('archiva').with(
-      url:         'http://archive.apache.org/dist/archiva/1.3.6/binaries/' \
-                   'apache-archiva-1.3.6-bin.tar.gz',
-      version:     '1.3.6',
+      url:         'http://archive.apache.org/dist/archiva/2.1.1/binaries/' \
+                   'apache-archiva-2.1.1-bin.tar.gz',
+      version:     '2.1.1',
       prefix_root: '/opt/',
       home_dir:    '/opt/archiva',
-      checksum:    'bc696f38bacee90695802ec149f167125b24cc93c690560b5c5826a8e8bf86da',
+      checksum:    'e1c3245b73f8f6aceae05527331cd1902dd5edb647056e2f83269fc0e2e8ace7',
       owner:       'root'
     )
   end
@@ -25,8 +25,13 @@ describe 'archiva::default' do
     )
   end
 
-  it 'deletes /opt/archiva/bin/wrapper-linux-x86-32' do
-    expect(chef_run).to delete_file '/opt/archiva/bin/wrapper-linux-x86-32'
+  [
+    'bin/wrapper-linux-x86-32',
+    'lib/libwrapper-linux-x86-32.so'
+  ].each do |file|
+    it "deletes /opt/archiva/#{file}" do
+      expect(chef_run).to delete_file "/opt/archiva/#{file}"
+    end
   end
 
   it 'enables and starts the archiva service' do
