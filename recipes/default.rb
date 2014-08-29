@@ -18,10 +18,9 @@
 
 include_recipe 'ark'
 
-# download, extract archiva in /opt and make the proper symblink
-
 ark 'archiva' do
-  url node[:archiva][:url_version]
+  url "http://archive.apache.org/dist/archiva/#{node[:archiva][:version]}" \
+      "/binaries/apache-archiva-#{node[:archiva][:version]}-bin.tar.gz"
   version node[:archiva][:version]
   prefix_root node[:archiva][:install_path]
   home_dir node[:archiva][:home]

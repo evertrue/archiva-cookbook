@@ -27,20 +27,6 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 1.3.5 standal
     </tr>
 
     <tr>
-      <td><code>[:archiva][:bin_version]</code></td>
-      <td>string</td>
-      <td>A secondary characteristic of the download URL</td>
-      <td><code>1.3.9.1</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:url_version]</code></td>
-        <td>string</td>
-        <td>URL to find the Archiva package</td>
-        <td>http://supergsego.com/apache/archiva/#{node[:archiva][:version]}/binaries/apache-archiva-#{node[:archiva][:bin_version]}-bin.tar.gz</code></td>
-    </tr>
-
-    <tr>
         <td><code>[:archiva][:checksum]</code></td>
         <td>string</td>
         <td>SHA512 checksum used by Ark</td>
