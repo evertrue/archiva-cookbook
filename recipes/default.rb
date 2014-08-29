@@ -33,7 +33,7 @@ link '/etc/init.d/archiva' do
   to "#{node[:archiva][:home]}/bin/archiva"
 end
 
-arch = node['kernel']['machine']
+arch = node[:kernel][:machine]
 if platform?('ubuntu') && arch.include?('x86_64')
   file "#{node[:archiva][:home]}/bin/wrapper-linux-x86-32" do
     action :delete
