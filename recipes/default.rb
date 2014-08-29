@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-archiva
+# Cookbook Name:: archiva
 # Recipe:: default
 # Author:: Jorge Espada <espada.jorge@gmail.com>
 #
