@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include_recipe 'archiva::default'
 include_recipe "nginx::#{node[:archiva][:nginx]}"
 
 template 'archiva_server.conf' do

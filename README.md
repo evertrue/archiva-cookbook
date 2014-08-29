@@ -7,7 +7,7 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 1.3.5 standal
 * `ark`
 * `java`
 * `nginx`
-    - The recipe may be omitted, which will result in nginx not being installed
+    - If the nginx_proxy recipe is not used, nginx won’t be installed
 
 ## Attributes
 
@@ -107,7 +107,7 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 1.3.5 standal
 ## Usage
 
 * Add `archiva::default` to a node’s run list
-* Add `archiva::nginx_proxy` to the run list to install Nginx & have it handle proxing requests to Archiva
+* Add `archiva::nginx_proxy` to a run list to include `archiva::default`, then install Nginx & have it handle proxing requests to Archiva
 
 ### Wrapping this cookbook
 
