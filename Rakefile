@@ -22,7 +22,6 @@ RSpec::Core::RakeTask.new(:unit) do |t|
   t.rspec_opts = '--color --format progress'
 end
 
-# Integration tests. Kitchen.ci
 desc 'Run Test Kitchen with Vagrant'
 task :vagrant do
   Kitchen.logger = Kitchen.default_file_logger
@@ -30,6 +29,9 @@ task :vagrant do
     instance.test(:always)
   end
 end
+
+desc 'Run all tests on Travis'
+task travis: %w(style unit)
 
 # Default
 task default: %w(style unit vagrant)
