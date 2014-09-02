@@ -33,7 +33,7 @@ end
 
 template "#{node[:archiva][:home]}/conf/jetty.xml" do
   source   'jetty.xml.erb'
-  mode     '0755'
+  mode     '0644'
   owner    node[:archiva][:user_owner]
   notifies :restart, 'service[archiva]', :immediately
 end
