@@ -1,6 +1,6 @@
 maintainer       "Jorge Espada"
 maintainer_email "espada.jorge@gmail.com"
-license          "All rights reserved"
+license          "Apache v2.0"
 description      "Installs/Configures archiva"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
