@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-archiva
+# Cookbook Name:: archiva
 # Recipe:: default
 # Author:: Jorge Espada <espada.jorge@gmail.com>
 #
@@ -16,38 +16,32 @@
 # limitations under the License.
 #
 
+include_recipe 'apt' if platform_family?('debian')
+include_recipe 'ark'
 
-
-
-include_recipe "ark"
-
-#download, extract archiva in /opt and make the proper symblink
-
-ark "archiva" do
-  url node[:archiva][:url_version]
-  version node[:archiva][:version]
+ark 'archiva' do
+  url         "http://archive.apache.org/dist/archiva/#{node[:archiva][:version]}" \
+              "/binaries/apache-archiva-#{node[:archiva][:version]}-bin.tar.gz"
+  version     node[:archiva][:version]
   prefix_root node[:archiva][:install_path]
-  home_dir node[:archiva][:home]
-  checksum node[:archiva][:checksum]
-  owner node[:archiva][:user_owner]
-  action :install
+  home_dir    node[:archiva][:home]
+  checksum    node[:archiva][:checksum]
+  owner       node[:archiva][:user_owner]
+  action      :install
 end
 
-
-#create scripts(/etc/init.d/archiva <option>) for stop start, using symblinks
-
-link "/etc/init.d/archiva" do
-  to "/opt/archiva/bin/archiva"
+link '/etc/init.d/archiva' do
+  to "#{node[:archiva][:home]}/bin/archiva"
 end
 
-arch = node['kernel']['machine']
-if platform?("ubuntu") && arch.include?("x86_64")
-	file "/opt/archiva/bin/wrapper-linux-x86-32" do
-		action :delete
-	end
+arch = node[:kernel][:machine]
+if platform?('ubuntu') && arch.include?('x86_64')
+  file "#{node[:archiva][:home]}/bin/wrapper-linux-x86-32" do
+    action :delete
+  end
 end
 
-service "archiva" do
-  supports :status => true, :start => true, :stop => true, :restart => true
+service 'archiva' do
+  supports status: true, start: true, stop: true, restart: true
   action [:enable, :start]
 end
