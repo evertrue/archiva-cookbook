@@ -18,6 +18,7 @@
 
 include_recipe 'apt' if platform_family?('debian')
 include_recipe 'ark'
+include_recipe 'java'
 
 ark 'archiva' do
   url         "http://archive.apache.org/dist/archiva/#{node[:archiva][:version]}" \
