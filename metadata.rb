@@ -10,6 +10,6 @@ supports 'ubuntu', '= 12.04'
 supports 'debian', '~> 7.2.0'
 
 depends 'apt',   '~> 2.5'
-depends 'ark',   '~> 0.9.0'
+depends 'ark'
 depends 'java',  '~> 1.27'
 depends 'nginx', '~> 2.7'

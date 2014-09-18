@@ -25,6 +25,7 @@ ark 'archiva' do
               "/binaries/apache-archiva-#{node[:archiva][:version]}-bin.tar.gz"
   version     node[:archiva][:version]
   prefix_root node[:archiva][:install_path]
+  prefix_home node[:archiva][:install_path]
   home_dir    node[:archiva][:home]
   checksum    node[:archiva][:checksum]
   owner       node[:archiva][:user_owner]
