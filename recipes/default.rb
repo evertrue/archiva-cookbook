@@ -36,14 +36,15 @@ link '/etc/init.d/archiva' do
   to "#{node[:archiva][:home]}/bin/archiva"
 end
 
-arch = node[:kernel][:machine]
-if platform?('ubuntu') && arch.include?('x86_64')
-  [
-    'bin/wrapper-linux-x86-32',
-    'lib/libwrapper-linux-x86-32.so'
-  ].each do |file|
-    file "#{node[:archiva][:home]}/#{file}" do
-      action :delete
+[
+  'bin/wrapper-linux-x86-32',
+  'lib/libwrapper-linux-x86-32.so'
+].each do |file|
+  file "#{node[:archiva][:home]}/#{file}" do
+    action :delete
+    only_if do
+      arch = node[:kernel][:machine]
+      platform_family?('debian') && arch.include?('x86_64')
     end
   end
 end
