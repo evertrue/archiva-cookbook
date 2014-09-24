@@ -12,6 +12,9 @@ script:
 - bundle exec rake travis
 after_script:
 - bundle exec rake integration:cloud_destroy
+notifications:
+  slack:
+    secure: IrLfd/b0zFqRn+9Ny1besU3tM804y7zJIoWX5XHX0M8y94V807gAyKKhS2A+AB2Xaysax1FVO5b1FShCyv1P08GJE0PsgxzNj8XjunqR4A6xYHVekJRRImeTjBKlzCC3NU8+2WShenbloU6un/QzTII/HG6FYL/cMtUgtlfsvNY=
 env:
   global:
   - secure: OtJYkBCPm7eaep3w1vgdwWqonn5xVmeqtwwBvCEslSyvhF7cBGu9+a02QXnJfTgRQj3ieEtWSMZZcAf8Y3GPH87wHC13OHyaDDGfUK0jCeX9V+NoYRHdIk0wYYEoHaF3kXJKjlYMWuvu4QH1GBTCgkDm1hFfFCmjVqa947CGivU=
