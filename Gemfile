@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 group :test, :development do
   gem 'rake'
+  gem 'coveralls', require: false
 end
 
 group :test do
