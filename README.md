@@ -27,7 +27,7 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standal
       <td><code>[:archiva][:version]</code></td>
       <td>string</td>
       <td>the version of Archiva to install</td>
-      <td><code>2.1.0</code></td>
+      <td><code>2.1.1</code></td>
     </tr>
 
     <tr>
