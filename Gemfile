@@ -11,7 +11,9 @@ group :test do
   gem 'foodcritic', '~> 3.0'
   gem 'rubocop',    '~> 0.23'
 
-  gem 'test-kitchen', '~> 1.2'
+  gem 'test-kitchen',
+      github: 'test-kitchen/test-kitchen',
+      ref: '459238b88ccb4219d8bcabd5a89a8adcb7391b16'
   gem 'kitchen-ec2',
       github: 'test-kitchen/kitchen-ec2',
       tag: 'e7f840f927518b0f9e29914205c048a463de654e'
