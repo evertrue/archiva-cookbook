@@ -17,6 +17,7 @@
 #
 
 include_recipe 'apt' if platform_family?('debian')
+include_recipe 'chef-sugar'
 include_recipe 'ark'
 include_recipe 'java'
 
@@ -42,10 +43,7 @@ end
 ].each do |file|
   file "#{node[:archiva][:home]}/#{file}" do
     action :delete
-    only_if do
-      arch = node[:kernel][:machine]
-      platform_family?('debian') && arch.include?('x86_64')
-    end
+    only_if { platform_family?('debian') && _64_bit? }
   end
 end
 
