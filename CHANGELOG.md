@@ -2,6 +2,10 @@ archiva CHANGELOG
 ======================
 This is the changelog for the archiva cookbook.
 
+v1.0.1 (2015-03-13)
+-------------------
+* Reload nginx when archiva_server.conf changes
+
 v1.0.0 (2014-09-24)
 -------------------
 * Refactored to install Archiva ≥ 2.1.1
