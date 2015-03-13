@@ -26,6 +26,7 @@ template 'archiva_server.conf' do
   owner  'root'
   group  'root'
   mode   '0644'
+  notifies :restart, 'service[nginx]'
 end
 
 nginx_site 'archiva_server.conf' do
