@@ -18,9 +18,7 @@ desc 'Run all style checks'
 task style: ['style:chef', 'style:ruby']
 
 desc 'Run ChefSpec unit tests'
-RSpec::Core::RakeTask.new(:unit) do |t|
-  t.rspec_opts = '--color --format progress'
-end
+RSpec::Core::RakeTask.new(:unit)
 
 desc 'Run Test Kitchen with Vagrant'
 task :vagrant do
