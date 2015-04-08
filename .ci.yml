@@ -1,3 +1,0 @@
-image: rosstimson/dind-chefdk
-command:
-  - chef exec rspec
