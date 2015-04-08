@@ -1,0 +1,4 @@
+image: ubuntu
+run_params: "-e PASSWORD=moew"
+command:
+  - chef exec rspec
