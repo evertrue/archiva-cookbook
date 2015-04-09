@@ -1,6 +1,6 @@
 name             'archiva'
-maintainer       'Jorge Espada'
-maintainer_email 'espada.jorge@gmail.com'
+maintainer       'EverTrue'
+maintainer_email 'devops@evertrue.com'
 license          'Apache v2.0'
 description      'Installs/Configures Archiva'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))

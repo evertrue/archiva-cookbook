@@ -138,3 +138,14 @@ E.g.,
     include_recipe 'archiva'
     include_recipe 'archiva::nginx_proxy'
 ```
+
+## Contributing
+
+See [CONTRIBUTING.MD](https://github.com/evertrue/archiva-cookbook/blob/master/CONTRIBUTING.md)
+
+## License and Authors
+
+Author:: EverTrue, Inc. <devops@evertrue.com>  
+Author:: Jorge Espada <espada.jorge@gmail.com>
+
+License:: Apache License v2.0
