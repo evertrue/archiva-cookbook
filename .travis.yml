@@ -17,7 +17,7 @@ before_install:
 - chmod 600 ~/.ssh/travis_ci_ec2.pem
 install:
 - eval "$(chef shell-init bash)"
-- chef gem install kitchen-ec2
+- chef gem install kitchen-ec2 coveralls
 - berks
 before_script:
 - chef --version
