@@ -7,5 +7,5 @@ LineLength:
   Max: 100
 
 # Aligning arguments makes for better readability
-SingleSpaceBeforeFirstArg:
+SpaceBeforeFirstArg:
   Enabled: false
