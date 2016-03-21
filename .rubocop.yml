@@ -7,5 +7,9 @@ LineLength:
   Max: 100
 
 # Aligning arguments makes for better readability
-SpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Enabled: false
+
+Style/ExtraSpacing:
+  Exclude:
+    - metadata.rb
