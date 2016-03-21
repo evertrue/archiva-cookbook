@@ -2,6 +2,11 @@ archiva CHANGELOG
 ======================
 This is the changelog for the archiva cookbook.
 
+v1.1.0 (2016-03-21)
+-------------------
+* Add `node[:archiva][:mirror]` attribute to allow operator to customize where Archiva is downloaded from
+* Refactor test harness to work well in Travis & do integration testing
+
 v1.0.1 (2015-03-13)
 -------------------
 * Reload nginx when archiva_server.conf changes
