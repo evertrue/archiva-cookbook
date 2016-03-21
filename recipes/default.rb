@@ -21,8 +21,8 @@ include_recipe 'ark'
 include_recipe 'java'
 
 ark 'archiva' do
-  url         "#{node['archiva']['mirror']}" \
-              "#{node['archiva']['version']}" \
+  url         node['archiva']['mirror'] +
+              node['archiva']['version'] +
               "/binaries/apache-archiva-#{node['archiva']['version']}-bin.tar.gz"
   version     node['archiva']['version']
   prefix_root node['archiva']['install_path']
