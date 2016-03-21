@@ -21,30 +21,30 @@ include_recipe 'ark'
 include_recipe 'java'
 
 ark 'archiva' do
-  url         "#{node[:archiva][:mirror]}" \
-              "#{node[:archiva][:version]}" \
-              "/binaries/apache-archiva-#{node[:archiva][:version]}-bin.tar.gz"
-  version     node[:archiva][:version]
-  prefix_root node[:archiva][:install_path]
-  prefix_home node[:archiva][:install_path]
-  home_dir    node[:archiva][:home]
-  checksum    node[:archiva][:checksum]
-  owner       node[:archiva][:user_owner]
+  url         "#{node['archiva']['mirror']}" \
+              "#{node['archiva']['version']}" \
+              "/binaries/apache-archiva-#{node['archiva']['version']}-bin.tar.gz"
+  version     node['archiva']['version']
+  prefix_root node['archiva']['install_path']
+  prefix_home node['archiva']['install_path']
+  home_dir    node['archiva']['home']
+  checksum    node['archiva']['checksum']
+  owner       node['archiva']['user_owner']
   action      :install
 end
 
 link '/etc/init.d/archiva' do
-  to "#{node[:archiva][:home]}/bin/archiva"
+  to "#{node['archiva']['home']}/bin/archiva"
 end
 
 [
   'bin/wrapper-linux-x86-32',
   'lib/libwrapper-linux-x86-32.so'
 ].each do |file|
-  file "#{node[:archiva][:home]}/#{file}" do
+  file "#{node['archiva']['home']}/#{file}" do
     action :delete
     only_if do
-      arch = node[:kernel][:machine]
+      arch = node['kernel']['machine']
       platform_family?('debian') && arch.include?('x86_64')
     end
   end
