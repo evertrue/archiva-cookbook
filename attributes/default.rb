@@ -1,3 +1,4 @@
+default[:archiva][:mirror]  = 'http://archive.apache.org/dist/archiva/'
 default[:archiva][:version]  = '2.1.1'
 default[:archiva][:checksum] = 'e1c3245b73f8f6aceae05527331cd1902dd5edb647056e2f83269fc0e2e8ace7'
 
