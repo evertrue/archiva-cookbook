@@ -18,7 +18,7 @@
 #
 
 include_recipe 'archiva::default'
-include_recipe "nginx::#{node['archiva']['nginx']}"
+include_recipe "chef_nginx::#{node['archiva']['nginx']}"
 
 template 'archiva_server.conf' do
   path   "#{node['nginx']['dir']}/sites-available/archiva_server.conf"
