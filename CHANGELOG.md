@@ -2,6 +2,10 @@ archiva CHANGELOG
 ======================
 This is the changelog for the archiva cookbook.
 
+v1.2.0 (2016-09-26)
+-------------------
+* Use chef_nginx instead of nginx
+
 v1.1.0 (2016-03-21)
 -------------------
 * Add `node[:archiva][:mirror]` attribute to allow operator to customize where Archiva is downloaded from
