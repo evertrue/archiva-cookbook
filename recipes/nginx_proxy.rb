@@ -30,7 +30,7 @@ template 'archiva_server.conf' do
 end
 
 nginx_site 'archiva_server.conf' do
-  enable :true
+  enable true
 end
 
 template "#{node['archiva']['home']}/conf/jetty.xml" do
