@@ -2,6 +2,10 @@ archiva CHANGELOG
 ======================
 This is the changelog for the archiva cookbook.
 
+v2.0.0 (2017-03-13)
+-------------------
+* Bump `chef_nginx` to v5
+
 v1.2.0 (2016-09-26)
 -------------------
 * Use chef_nginx instead of nginx
