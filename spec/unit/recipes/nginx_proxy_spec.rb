@@ -9,7 +9,6 @@ describe 'archiva::nginx_proxy' do
 
   %w(
     archiva
-    nginx::default
   ).each do |recipe|
     it "includes the #{recipe} recipe" do
       expect(chef_run).to include_recipe recipe
@@ -27,11 +26,11 @@ describe 'archiva::nginx_proxy' do
   end
 
   it 'enables the archiva_server nginx site' do
-    expect(chef_run).to run_execute('nxensite archiva_server.conf').with(
-      command: '/usr/sbin/nxensite archiva_server.conf'
-    )
-    resource = chef_run.execute('nxensite archiva_server.conf')
-    expect(resource).to notify('service[nginx]').to(:reload)
+    expect(chef_run).to enable_nginx_site('archiva_server.conf')
+  end
+
+  it 'installs nginx' do
+    expect(chef_run).to install_nginx_install('distro')
   end
 
   it 'adds a custom Archiva jetty config' do
@@ -42,5 +41,9 @@ describe 'archiva::nginx_proxy' do
     )
     resource = chef_run.template('/opt/archiva/conf/jetty.xml')
     expect(resource).to notify('service[archiva]').to(:restart).immediately
+  end
+
+  it 'enables nginx' do
+    expect(chef_run).to enable_service ('nginx')
   end
 end

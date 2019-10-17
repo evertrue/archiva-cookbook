@@ -1,10 +1,11 @@
 default['archiva']['mirror']   = 'http://archive.apache.org/dist/archiva/'
-default['archiva']['version']  = '2.1.1'
-default['archiva']['checksum'] = 'e1c3245b73f8f6aceae05527331cd1902dd5edb647056e2f83269fc0e2e8ace7'
+default['archiva']['version']  = '2.2.4'
+default['archiva']['checksum'] = 'ad099c451529d566db8b5ad6cf2d8bafc6aa2cc3d225c39fd374cad420a6643c'
 
 default['archiva']['install_path'] = '/opt/'
 default['archiva']['home']         = '/opt/archiva'
 default['archiva']['user_owner']   = 'root'
+default['archiva']['group']        = 'root'
 
 default['archiva']['web_host']     = '127.0.0.1'
 default['archiva']['web_port']     = '8080'
@@ -15,4 +16,4 @@ default['archiva']['nginx']      = 'default'
 default['archiva']['nginx_uri']  = '/'
 default['archiva']['nginx_port'] = '80'
 
-set['java']['jdk_version'] = '7'
+default['nginx']['dir']          = '/etc/nginx'

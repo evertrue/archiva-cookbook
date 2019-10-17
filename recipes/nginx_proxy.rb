@@ -18,7 +18,9 @@
 #
 
 include_recipe 'archiva::default'
-include_recipe "chef_nginx::#{node['archiva']['nginx']}"
+
+nginx_install 'distro' do
+end
 
 template 'archiva_server.conf' do
   path   "#{node['nginx']['dir']}/sites-available/archiva_server.conf"
@@ -30,7 +32,8 @@ template 'archiva_server.conf' do
 end
 
 nginx_site 'archiva_server.conf' do
-  enable true
+  action :enable
+  notifies :reload, 'service[nginx]', :immediately
 end
 
 template "#{node['archiva']['home']}/conf/jetty.xml" do
@@ -38,4 +41,8 @@ template "#{node['archiva']['home']}/conf/jetty.xml" do
   mode     '0644'
   owner    node['archiva']['user_owner']
   notifies :restart, 'service[archiva]', :immediately
+end
+
+service 'nginx' do
+  action :enable
 end

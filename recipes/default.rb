@@ -33,8 +33,15 @@ ark 'archiva' do
   action      :install
 end
 
+cookbook_file "#{node['archiva']['home']}/bin/archiva-workaround" do
+  group 'root'
+  owner 'root'
+  source 'archiva'
+  mode '755'
+end
+
 link '/etc/init.d/archiva' do
-  to "#{node['archiva']['home']}/bin/archiva"
+  to "#{node['archiva']['home']}/bin/archiva-workaround"
 end
 
 [

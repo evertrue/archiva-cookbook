@@ -7,21 +7,25 @@ describe 'archiva::default' do
     expect(chef_run).to include_recipe 'ark'
   end
 
+  it 'includes the java recipe' do
+    expect(chef_run).to include_recipe 'java'
+  end
+
   it 'installs Archiva' do
     expect(chef_run).to install_ark('archiva').with(
-      url:         'http://archive.apache.org/dist/archiva/2.1.1/binaries/' \
-                   'apache-archiva-2.1.1-bin.tar.gz',
-      version:     '2.1.1',
+      url:         'http://archive.apache.org/dist/archiva/2.2.4/binaries/' \
+                   'apache-archiva-2.2.4-bin.tar.gz',
+      version:     '2.2.4',
       prefix_root: '/opt/',
       home_dir:    '/opt/archiva',
-      checksum:    'e1c3245b73f8f6aceae05527331cd1902dd5edb647056e2f83269fc0e2e8ace7',
+      checksum:    'ad099c451529d566db8b5ad6cf2d8bafc6aa2cc3d225c39fd374cad420a6643c',
       owner:       'root'
     )
   end
 
   it 'links /etc/init.d/archiva to /opt/archiva/bin/archiva' do
     expect(chef_run).to create_link('/etc/init.d/archiva').with(
-      to: '/opt/archiva/bin/archiva'
+      to: '/opt/archiva/bin/archiva-workaround'
     )
   end
 
@@ -38,4 +42,10 @@ describe 'archiva::default' do
     expect(chef_run).to enable_service 'archiva'
     expect(chef_run).to start_service 'archiva'
   end
+
+  it 'copies a workaround service file for archiva' do
+    expect(chef_run).to create_cookbook_file ("/opt/archiva/bin/archiva-workaround")
+  end
+
+
 end

@@ -4,7 +4,7 @@
 [![Build Status](http://img.shields.io/travis/evertrue/archiva-cookbook.svg?style=flat)](https://travis-ci.org/evertrue/archiva-cookbook)
 [![Coverage Status](https://img.shields.io/coveralls/evertrue/archiva-cookbook.svg?style=flat)](https://coveralls.io/r/evertrue/archiva-cookbook?branch=master)
 
-This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standalone.
+This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.2.4 standalone.
 
 ## Requirements
 
@@ -27,14 +27,14 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standal
       <td><code>[:archiva][:version]</code></td>
       <td>string</td>
       <td>the version of Archiva to install</td>
-      <td><code>2.1.1</code></td>
+      <td><code>2.2.4</code></td>
     </tr>
 
     <tr>
         <td><code>[:archiva][:checksum]</code></td>
         <td>string</td>
         <td>SHA512 checksum used by Ark</td>
-        <td><code>b517a93c8e1d5825adb738d091c8a55b9bcfd0200286d9c403b58f88a67c4aab</code></td>
+        <td><code>ad099c451529d566db8b5ad6cf2d8bafc6aa2cc3d225c39fd374cad420a6643c</code></td>
     </tr>
 
     <tr>
