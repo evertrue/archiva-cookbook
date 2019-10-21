@@ -11,7 +11,6 @@ default['archiva']['web_port']     = '8080'
 default['archiva']['web_domain']   = 'archiva.example.com'
 default['archiva']['web_template'] = 'default'
 
-default['archiva']['nginx']      = 'default'
 default['archiva']['nginx_uri']  = '/'
 default['archiva']['nginx_port'] = '80'
 
