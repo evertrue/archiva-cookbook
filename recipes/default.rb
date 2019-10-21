@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: archiva
+# Cookbook:: archiva
 # Recipe:: default
 # Author:: Jorge Espada <espada.jorge@gmail.com>
 #
@@ -39,7 +39,7 @@ end
 
 [
   'bin/wrapper-linux-x86-32',
-  'lib/libwrapper-linux-x86-32.so'
+  'lib/libwrapper-linux-x86-32.so',
 ].each do |file|
   file "#{node['archiva']['home']}/#{file}" do
     action :delete

@@ -18,11 +18,11 @@ describe 'archiva::nginx_proxy' do
 
   it 'adds an nginx site config for archiva' do
     expect(chef_run).to create_template('archiva_server.conf').with(
-      path:   '/etc/nginx/sites-available/archiva_server.conf',
+      path: '/etc/nginx/sites-available/archiva_server.conf',
       source: 'nginx_site_default.erb',
-      owner:  'root',
-      group:  'root',
-      mode:   '0644'
+      owner: 'root',
+      group: 'root',
+      mode: '0644'
     )
   end
 
@@ -37,8 +37,8 @@ describe 'archiva::nginx_proxy' do
   it 'adds a custom Archiva jetty config' do
     expect(chef_run).to create_template('/opt/archiva/conf/jetty.xml').with(
       source: 'jetty.xml.erb',
-      mode:   '0644',
-      owner:  'root'
+      mode: '0644',
+      owner: 'root'
     )
     resource = chef_run.template('/opt/archiva/conf/jetty.xml')
     expect(resource).to notify('service[archiva]').to(:restart).immediately
