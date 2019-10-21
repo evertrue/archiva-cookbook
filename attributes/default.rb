@@ -15,4 +15,4 @@ default['archiva']['nginx']      = 'default'
 default['archiva']['nginx_uri']  = '/'
 default['archiva']['nginx_port'] = '80'
 
-set['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
