@@ -12,7 +12,7 @@ issues_url       'https://github.com/evertrue/archiva-cookbook/issues'
 supports 'ubuntu', '>= 16.04'
 supports 'debian', '~> 9.0.0'
 
-depends 'apt', '~> 2.5'
+depends 'apt', '~> 7.2'
 depends 'ark', '~> 4.0'
 depends 'java', '~> 4.3'
 depends 'chef_nginx', '~> 5.0'
