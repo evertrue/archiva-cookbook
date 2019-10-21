@@ -13,6 +13,6 @@ supports 'ubuntu', '>= 16.04'
 supports 'debian', '~> 9.0.0'
 
 depends 'apt', '~> 2.5'
-depends 'ark'
+depends 'ark', '~> 4.0'
 depends 'java', '~> 1.27'
 depends 'chef_nginx', '~> 5.0'
