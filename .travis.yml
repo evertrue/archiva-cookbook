@@ -1,38 +1,69 @@
+---
 language: ruby
+dist: xenial
+sudo: false
+if: (type = pull_request) OR (tag IS present) OR (branch = master)
 cache:
   directories:
-  - "$HOME/.berkshelf"
-rvm: 2.2
-addons:
-  apt:
-    sources:
-    - chef-stable-precise
-    packages:
-    - chefdk
-before_install:
-- openssl aes-256-cbc -K $encrypted_755628117be5_key -iv $encrypted_755628117be5_iv
-  -in travis_ci_ec2.pem.enc -out ~/.ssh/travis_ci_ec2.pem -d
-- mkdir ~/.chef
-- echo 'node_name "trubot"' >> ~/.chef/knife.rb
-- chmod 600 ~/.ssh/travis_ci_ec2.pem
+    - "$HOME/.berkshelf"
+services: docker
 install:
-- eval "$(chef shell-init bash)"
-- chef gem install kitchen-ec2 coveralls
-- berks
+  - curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk -v 3
+  - eval "$(chef shell-init bash)"
 before_script:
-- chef --version
-- rubocop --version
-- foodcritic --version
-script:
-- rubocop
-- foodcritic .
-- chef exec rspec
-- kitchen test -d always
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
+    -N DOCKER )
+  - chef --version
 env:
   global:
-  - KITCHEN_YAML=.kitchen.cloud.yml
-  - secure: AWhHcJMc5RfgA8t6XP7YjM/hVNes27NHV3FRamZ8W19nhCCdAPXHica5eINEJ1aB8Uwb5NI1e3gkmcB1SKypgiPk/kKOzmnoud+Co/13LGLhFWtgbBn4BJdV9SsFZjzfhXtYly7+Km7+pWcTN68E1eb0zyqaEvIx8JWRfQVyrEE=
-  - secure: VlMT8N9fZyetQSR+KJ+zBr6pWNidgRzA2g5ywmxhXhtz1mx2gXfew1lzC7K3+9XWkKwXovLgPXsaj3UEmhyJwRrYf+l8nwSyG4ekq/QM0znxYjKNq366B92phETDEqr8/kSq7SCPG+J5gQaDjvYHjNzL+ROp0qFtjKrLTS70cec=
+    - CHEF_LICENSE='accept'
+jobs:
+  include:
+    - stage: Verify
+      script: delivery local verify
+      env:
+        - CHEF_VERSION=14
+    - stage: Verify
+      script: delivery local verify
+      env:
+        - CHEF_VERSION=15
+
+    - stage: 'Acceptance: default-ubuntu-1604'
+      script: kitchen test default-ubuntu-1604
+      env:
+        - CHEF_VERSION=14
+    - stage: 'Acceptance: default-ubuntu-1604'
+      script: kitchen test default-ubuntu-1604
+      env:
+        - CHEF_VERSION=15
+
+    - stage: 'Acceptance: default-ubuntu-1804'
+      script: kitchen test default-ubuntu-1804
+      env:
+        - CHEF_VERSION=14
+    - stage: 'Acceptance: default-ubuntu-1804'
+      script: kitchen test default-ubuntu-1804
+      env:
+        - CHEF_VERSION=15
+
+    - stage: 'Acceptance: default-debian-9'
+      script: kitchen test default-debian-9
+      env:
+        - CHEF_VERSION=14
+    - stage: 'Acceptance: default-debian-9'
+      script: kitchen test default-debian-9
+      env:
+        - CHEF_VERSION=15
+
+    - stage: 'Acceptance: default-debian-10'
+      script: kitchen test default-debian-10
+      env:
+        - CHEF_VERSION=14
+    - stage: 'Acceptance: default-debian-10'
+      script: kitchen test default-debian-10
+      env:
+        - CHEF_VERSION=15
+
 notifications:
   slack:
     secure: K85DFv64uqlJSDRpQBK7OvrU+05YO52zX5GwhAyqSiuuJlSg+CfEJiBJgfvrB+McVyzmMqmjLnhR2X7TYdeB/dZZoJpRUEyl2qt66AgAG0pl92MCjtdDi+KDgXA0W6nRvLIatDkWyubvgQ+NSFL0dLlNs2z1tqOnYoNuExpME7k=
