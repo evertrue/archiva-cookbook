@@ -17,3 +17,4 @@ default['archiva']['nginx_uri']  = '/'
 default['archiva']['nginx_port'] = '80'
 
 default['nginx']['dir']          = '/etc/nginx'
+default['nginx']['log_dir']      = '/var/log/nginx'

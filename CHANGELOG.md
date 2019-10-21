@@ -2,6 +2,10 @@ archiva CHANGELOG
 ======================
 This is the changelog for the archiva cookbook.
 
+v3.0.1 (2019-10-21)
+* Bumped to version 3.01
+* Set nginx log path (defaults to /)
+
 v3.0.0 (2019-10-17)
 * Bumped to version 3.0.0
 * Install Archiva 2.2.4
