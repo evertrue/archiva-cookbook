@@ -9,8 +9,8 @@ chef_version     '>= 12.7' if respond_to?(:chef_version)
 source_url       'https://github.com/evertrue/archiva-cookbook'
 issues_url       'https://github.com/evertrue/archiva-cookbook/issues'
 
-supports 'ubuntu', '>= 12.04'
-supports 'debian', '~> 7.2.0'
+supports 'ubuntu', '>= 16.04'
+supports 'debian', '~> 9.0.0'
 
 depends 'apt', '~> 2.5'
 depends 'ark'
