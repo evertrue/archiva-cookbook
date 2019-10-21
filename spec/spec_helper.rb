@@ -8,5 +8,3 @@ RSpec.configure do |config|
   config.version   = '18.04'
   config.log_level = :fatal
 end
-
-at_exit { ChefSpec::Coverage.report! }
