@@ -3,7 +3,7 @@
 [![Cookbook Version](https://img.shields.io/cookbook/v/archiva.svg?style=flat)](https://supermarket.getchef.com/cookbooks/archiva)
 [![Build Status](http://img.shields.io/travis/evertrue/archiva-cookbook.svg?style=flat)](https://travis-ci.org/evertrue/archiva-cookbook)
 
-This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standalone.
+This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.2.4 standalone.
 
 ## Requirements
 

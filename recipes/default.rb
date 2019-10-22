@@ -33,6 +33,12 @@ ark 'archiva' do
   action      :install
 end
 
+# We supply our own, slightly modified service script because the
+# one supplied by the package, is not compatible with SystemD.
+# This is a copy that script, modified to be compatible.
+# Credit to @torjeh for this contribution in #14
+cookbook_file "#{node['archiva']['home']}/bin/archiva"
+
 link '/etc/init.d/archiva' do
   to "#{node['archiva']['home']}/bin/archiva"
 end
