@@ -10,107 +10,34 @@ This cookbook installs [Apache Archiva](http://archiva.apache.org) 2.1.1 standal
 * `ark`
 * `java`
 * `nginx`
-    - If the nginx_proxy recipe is not used, nginx won’t be installed
+    - If the `nginx_proxy` recipe is not used, nginx won’t be installed
 
 ## Attributes
 
-<table>
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-    </tr>
-
-    <tr>
-      <td><code>[:archiva][:version]</code></td>
-      <td>string</td>
-      <td>the version of Archiva to install</td>
-      <td><code>2.1.1</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:checksum]</code></td>
-        <td>string</td>
-        <td>SHA512 checksum used by Ark</td>
-        <td><code>b517a93c8e1d5825adb738d091c8a55b9bcfd0200286d9c403b58f88a67c4aab</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:install_path]</code></td>
-        <td>string</td>
-        <td>Path for Ark to install Archiva to</td>
-        <td><code>/opt/</code></tr>
-    </td>
-
-    <tr>
-        <td><code>[:archiva][:home]</code></td>
-        <td>string</td>
-        <td>Where Archiva will be upon installation</td>
-        <td><code>/opt/archiva</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:user_owner]</code></td>
-        <td>string</td>
-        <td>Owner of Archiva</td>
-        <td><code>root</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:web_host]</code></td>
-        <td>string</td>
-        <td>Hostname for Archiva; used for Nginx</td>
-        <td><code>127.0.0.1</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:web_port]</code></td>
-        <td>string</td>
-        <td>Port that Archiva listens on</td>
-        <td><code>8080</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:web_domain]</code></td>
-        <td>string</td>
-        <td>Server name used by Nginx</td>
-        <td><code>archiva.example.com</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:web_template]</code></td>
-        <td>string</td>
-        <td>Portion of template filename for Nginx</td>
-        <td><code>default</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:nginx]</code></td>
-        <td>string</td>
-        <td>The <code>nginx</code> cookbook recipe to use</td>
-        <td><code>default</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:nginx_uri]</code></td>
-        <td>string</td>
-        <td>The Nginx server location</td>
-        <td><code>/</code></td>
-    </tr>
-
-    <tr>
-        <td><code>[:archiva][:nginx_port]</code></td>
-        <td>string</td>
-        <td>Nginx virtual host listen port</td>
-        <td><code>80</code></td>
-    </tr>
-</table>
+| Key                           | Type   | Description                             |
+| ---                           | ----   | ----------                              |
+| `['archiva']['version']`      | string | the version of Archiva to install       |
+| `['archiva']['checksum']`     | string | SHA512 checksum used by Ark             |
+| `['archiva']['install_path']` | string | Path for Ark to install Archiva to      |
+| `['archiva']['home']`         | string | Where Archiva will be upon installation |
+| `['archiva']['user_owner']`   | string | Owner of Archiva                        |
+| `['archiva']['web_host']`     | string | Hostname for Archiva; used for Nginx    |
+| `['archiva']['web_port']`     | string | Port that Archiva listens on            |
+| `['archiva']['web_domain']`   | string | Server name used by Nginx               |
+| `['archiva']['web_template']` | string | Portion of template filename for Nginx  |
+| `['archiva']['nginx']`        | string | The `nginx` cookbook recipe to use      |
+| `['archiva']['nginx_uri']`    | string | The Nginx server location               |
+| `['archiva']['nginx_port']`   | string | Nginx virtual host listen port          |
 
 ## Usage
 
+Either:
+
 * Add `archiva::default` to a node’s run list
-* Add `archiva::nginx_proxy` to a run list to include `archiva::default`, then install Nginx & have it handle proxing requests to Archiva
+
+Or:
+
+* Add `archiva::nginx_proxy` to a run list to include `archiva::default`, which installs NGINX & sets it to handle proxing requests to Archiva
 
 ### Wrapping this cookbook
 
@@ -121,21 +48,21 @@ You would then include this cookbook’s recipe(s) in your wrapper cookbook, set
 E.g.,
 
 ```ruby
-    # attributes/default.rb
+# attributes/default.rb
 
-    set[:java][:java_home]   = '/usr/lib/jvm/java-7-openjdk-amd64'
-    set[:java][:java_exec]   = node[:java][:java_home] + '/bin/java'
-    set[:java][:jdk_version] = '7'
+override['java']['java_home']   = '/usr/lib/jvm/java-7-openjdk-amd64'
+override['java']['java_exec']   = node['java']['java_home'] + '/bin/java'
+override['java']['jdk_version'] = '7'
 
-    set[:archiva][:nginx_uri]   = '/archiva/'
-    set[:archiva][:nginx_port]  = '8080'
-    set[:archiva][:web_host]    = 'localhost'
-    set[:archiva][:web_port]    = '9090'
+override['archiva']['nginx_uri']   = '/archiva/'
+override['archiva']['nginx_port']  = '8080'
+override['archiva']['web_host']    = 'localhost'
+override['archiva']['web_port']    = '9090'
 
-    # recipes/default.rb
+# recipes/default.rb
 
-    include_recipe 'archiva'
-    include_recipe 'archiva::nginx_proxy'
+include_recipe 'archiva'
+include_recipe 'archiva::nginx_proxy'
 ```
 
 ## Contributing
@@ -144,7 +71,9 @@ See [CONTRIBUTING.MD](https://github.com/evertrue/archiva-cookbook/blob/master/C
 
 ## License and Authors
 
-Author:: EverTrue, Inc. <devops@evertrue.com>  
-Author:: Jorge Espada <espada.jorge@gmail.com>
+Author:: Jeff Byrnes <thejeffbyrnes@gmail.com>  
+Author:: Eric Herot <eric.herot@gmail.com>  
+Author:: Ed Hurtig <eddie@hurtigtechnologies.com>  
+Author:: Jorge Espada <espada.jorge@gmail.com>  
 
 License:: Apache License v2.0
