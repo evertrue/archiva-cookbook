@@ -23,7 +23,7 @@ v1.0.0 (2014-09-24)
 -------------------
 * Refactored to install Archiva ≥ 2.1.1
 * Fixed up metadata
-* Addded Berkshelf support
+* Added Berkshelf support
 * Added ChefSpec unit tests
 * Added Test Kitchen
 * Added ServerSpec integration tests

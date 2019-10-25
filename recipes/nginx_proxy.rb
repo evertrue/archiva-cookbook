@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: archiva
+# Cookbook:: archiva
 # Recipe:: nginx_proxy
 #
-# Copyright 2012, Jorge Espada
+# Copyright:: 2012, Jorge Espada
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +18,15 @@
 #
 
 include_recipe 'archiva::default'
-include_recipe "chef_nginx::#{node['archiva']['nginx']}"
 
-template 'archiva_server.conf' do
-  path   "#{node['nginx']['dir']}/sites-available/archiva_server.conf"
-  source "nginx_site_#{node['archiva']['web_template']}.erb"
-  owner  'root'
-  group  'root'
-  mode   '0644'
-  notifies :reload, 'service[nginx]', :immediately
+nginx_install 'repo' do
+  default_site_enabled false
 end
 
 nginx_site 'archiva_server.conf' do
-  enable true
+  cookbook 'archiva'
+  template "nginx_site_#{node['archiva']['web_template']}.erb"
+  action :enable
 end
 
 template "#{node['archiva']['home']}/conf/jetty.xml" do
