@@ -14,4 +14,10 @@ default['archiva']['web_template'] = 'default'
 default['archiva']['nginx_uri']  = '/'
 default['archiva']['nginx_port'] = '80'
 
-default['java']['jdk_version'] = '8'
+default['java']['jdk_version'] =
+  value_for_platform(
+    'debian' => {
+      '>= 10.0' => '11',
+    },
+    'default' => '8'
+  )
